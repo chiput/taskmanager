@@ -38,14 +38,6 @@
 <link href="<?=$this->baseUrl()?>css/style.css" rel="stylesheet">
 <!-- color CSS -->
 <link href="<?=$this->baseUrl()?>css/colors/blue.css" id="theme"  rel="stylesheet">
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-<!-- <script src="http://www.w3schools.com/lib/w3data.js"></script> -->
-
 
 <!-- jQuery -->
 <script src="<?=$this->baseUrl()?>plugins/bower_components/jquery/dist/jquery.min.js"></script>
@@ -60,36 +52,28 @@
   <!-- HEADER -->
 
 <!-- Navigation -->
-  <nav class="navbar navbar-default navbar-static-top m-b-0 hidden-print">
+<nav class="navbar navbar-default navbar-static-top m-b-0">
     <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-      <div class="top-left-part"><a class="logo"  href="#"><b><img src="<?=$this->baseUrl()?>plugins/images/harmonipermana-logo.png" width="150" alt="home" /></b><span class="hidden-xs"></span></a></div>
-      <ul class="nav navbar-top-links navbar-left hidden-xs">
-        <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
-        <!--<li>
+      <div class="top-left-part"><a class="logo" href="#"><b><img src="<?=$this->baseUrl()?>plugins/images/harmonipermana-logo.png" width="150" alt="home" /></b><span class="hidden-xs"></span></a></div>
+      <ul class="nav navbar-top-links navbar-left hidden-xs active">
+        <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="ti-menu"></i></a></li>
+        <li class="in">
           <form role="search" class="app-search hidden-xs">
             <input type="text" placeholder="Search..." class="form-control">
-            <a href=""><i class="fa fa-search"></i></a>
+            <a href="" class="active"><i class="fa fa-search"></i></a>
           </form>
-        </li>-->
+        </li>
       </ul>
       <ul class="nav navbar-top-links navbar-right pull-right">
-        <li class="dropdown">
-            <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#">
-                <img src="<?=$this->baseUrl()?>plugins/images/users/avatar.png" alt="user-img" width="36" class="img-circle">
-                <b class="hidden-xs"> Admin</b>
-            </a>
-          <ul class="dropdown-menu dropdown-user animated">
-            <!--<li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-            <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-            <li role="separator" class="divider"></li>-->
-            <li><a href="#>"><i class="fa fa-power-off"></i> Logout</a></li>
+        
+        <!-- /.dropdown -->
+        <li class="dropdown"> <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"><img src="http://localhost:8080/plugins/images/users/avatar.png" alt="user-img" width="36" class="img-circle"> </a>
+          <ul class="dropdown-menu dropdown-user animated flipInY">
+            <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
+            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
           </ul>
           <!-- /.dropdown-user -->
         </li>
-        <!-- /.dropdown -->
       </ul>
     </div>
     <!-- /.navbar-header -->
@@ -100,74 +84,168 @@
   <div class="navbar-default sidebar hidden-print" role="navigation">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
         <ul class="nav" id="side-menu">
-            <!--<li class="sidebar-search hidden-sm hidden-md hidden-lg">
+            <li class="sidebar-search hidden-sm hidden-md hidden-lg">
                 <div class="input-group custom-search-form">
                     <input type="text" class="form-control" placeholder="Search...">
                     <span class="input-group-btn">
                     <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
                     </span>
                 </div>
-            </li>-->
+            </li>
             
-            <li><a href="#" class="waves-effect"><i class="ti-user fa-fw"></i> <span class="hide-menu">User <span class="fa arrow"></span></span></a>
+            <li><a href="#" class="waves-effect"><i class="ti-user fa-fw"></i> <span class="hide-menu">User<span class="fa arrow"></span></span></a>
               <ul class="nav nav-second-level">
-                <li><a href="<?=$this->pathFor('tampil-user')?>" class="waves-effect">Daftar User</a></li>
+                <!-- <li><a href="<?=$this->pathFor('tampil-user')?>" class="waves-effect">Daftar User</a></li> -->
+        </ul>
+        <li><a href="#" class="waves-effect"><i class="icon-list fa-fw"></i> <span class="hide-menu">Personal Task Manager <span class="fa arrow"></span></span></a>
+              <ul class="nav nav-second-level">
+                <!-- <li><a href="<?=$this->pathFor('tampil-user')?>" class="waves-effect">Daftar User</a></li> -->
         </ul>
     </div>
   </div>
 
   <!-- Left navbar-header end -->
   <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-              <div class="col-sm-12">
-                <?php if ($this->getSessionFlash('success')): ?>
-                <div class="alert alert-success alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <?php echo $this->getSessionFlash('success'); ?>
-                </div>
-                <?php endif; ?>
-              </div>
-            </div>
-            <div class="row">
-            <div class="col-sm-12">
-                <div class="white-box">
-                    <h3 class="box-title m-b-0"><?=$title?></h3>
-                    
-                    <p class="text-muted m-b-20"><a href="<?php echo $this->pathFor('form-user'); ?>" class="btn btn-primary">Tambah</a></p>
-                    <table class="table table-striped myDataTable">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>User</th>
-                                <th>Role</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach($users as $user): ?>
-                            <tr>
-                                <td class="text-nowrap">
-                                    <a href="<?php echo $this->pathFor('update-user', ['id' => $user->id]) ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i></a>
-                                    <a href="<?php echo $this->pathFor('delete-user', ['id' => $user->id]) ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger m-r-10"></i> </a>
-                                </td>
-                                <td><?php echo $user->username; ?></td>
-                                <td><?php echo $user->role; ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+    <div id="page-wrapper" style="min-height: 601px;">
+    <div class="container-fluid">
+      <div class="row bg-title">
+        <div class="col-sm-2 col-xs-9">
+          <a class="btn btn-block btn-outline btn-rounded btn-info"><span>Task Manager</span></a>
         </div>
-
-
-           
-
-        <footer class="footer text-center"> <strong>Hospitality Platform</strong> &copy; <?=date('Y')?></footer>
+        <div class="col-sm-2 col-lg-1 col-xs-9">
+          <a class="btn btn-block btn-outline btn-rounded btn-info"><span class="ti-lock"> Private</span></a>
         </div>
-      <!-- /#page-wrapper -->
+        <div class="col-lg-9 col-md-8 col-xs-12">
+          <ol class="breadcrumb">
+            <li><a href="#">Show Menu</a></li>
+          </ol>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-md-4">
+          <div class="white-box">
+            <h3 class="box-title">Task Manager</h3>
+            <div class="myadmin-dd dd" id="nestable">
+              <ol class="dd-list">
+                <li class="dd-item" data-id="">
+                  <div class="dd-handle"> Item 1 </div>
+                </li>
+                <li class="dd-item" data-id="2"><button data-action="collapse" type="button">Collapse</button><button data-action="expand" type="button" style="display: none;">Expand</button>
+                  <div class="dd-handle"> Item 2 </div>
+                  <ol class="dd-list">
+                    <li class="dd-item" data-id="3">
+                      <div class="dd-handle"> Item 3 </div>
+                    </li>
+                    <li class="dd-item" data-id="4">
+                      <div class="dd-handle"> Item 4 </div>
+                    </li>
+                    <li class="dd-item" data-id="5"><button data-action="collapse" type="button">Collapse</button><button data-action="expand" type="button" style="display: none;">Expand</button>
+                      <div class="dd-handle"> Item 5 </div>
+                      <ol class="dd-list">
+                        <li class="dd-item" data-id="6">
+                          <div class="dd-handle"> Item 6 </div>
+                        </li>
+                        <li class="dd-item" data-id="7">
+                          <div class="dd-handle"> Item 7 </div>
+                        </li>
+                        <li class="dd-item" data-id="8">
+                          <div class="dd-handle"> Item 8 </div>
+                        </li>
+                      </ol>
+                    </li>
+                    <li class="dd-item" data-id="9">
+                      <div class="dd-handle"> Item 9 </div>
+                    </li>
+                    <li class="dd-item" data-id="10">
+                      <div class="dd-handle"> Item 10 </div>
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- <div class="col-md-4">
+          <div class="panel panel-info">
+                                <div class="panel-wrapper collapse in" aria-expanded="true">
+                                  <div class="panel-body">
+                                      <form action="#">
+                                          <div class="form-body">
+                                              <div class="row">
+                                                  <div class="col-md-12">
+                                                      <div class="form-group">
+                                                        <label class="control-label">Title</label>
+                                                        <input type="text" id="firstName" class="form-control" placeholder="Input Title">
+                                                      </div>
+                                                  <div class="form-group">
+                                                    <label class="control-label">Team</label>
+                                                      <p>Teams make sharing and working within a group even easier. It doesn’t look like you are a member of any teams.</p>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                        </div>
+                                        <div class="form-actions">
+                                            <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Create</button>
+                                        </div>
+                                      </form>
+                                  </div>
+                              </div>
+                                    </div>
+        </div> -->
+      <!-- <form><span class="placeholder js-open-add-list">Add a list…</span><input class="list-name-input" type="text" name="name" placeholder="Add a list…" autocomplete="off" dir="auto" maxlength="512"><div class="list-add-controls u-clearfix"><input class="primary mod-list-add-button js-save-edit" type="submit" value="Save"><a class="icon-lg icon-close dark-hover js-cancel-edit" href="#"></a></div></form> -->
+      <!-- .right-sidebar -->
+      <div class="right-sidebar">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="slimscrollright" style="overflow: hidden; width: auto; height: 100%;">
+          <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+          <div class="r-panel-body">
+            <ul>
+              <li><b>Layout Options</b></li>
+              <li>
+                <div class="checkbox checkbox-info">
+                  <input id="checkbox1" type="checkbox" class="fxhdr">
+                  <label for="checkbox1"> Fix Header </label>
+                </div>
+              </li>
+              
+            </ul>
+            <ul id="themecolors" class="m-t-20">
+              <li><b>With Light sidebar</b></li>
+              <li><a href="javascript:void(0)" theme="default" class="default-theme">1</a></li>
+              <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
+              <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
+              <li><a href="javascript:void(0)" theme="blue" class="blue-theme">4</a></li>
+              <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
+              <li><a href="javascript:void(0)" theme="megna" class="megna-theme working">6</a></li>
+              <li><b>With Dark sidebar</b></li>
+              <br>
+              <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
+              <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
+              <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
+
+              <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
+              <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
+              <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
+            </ul>
+            <ul class="m-t-20 chatonline">
+              <li><b>Chat option</b></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a></li>
+            </ul>
+          </div>
+        </div><div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+      </div>
+      <!-- /.right-sidebar -->
     </div>
+    <!-- /.container-fluid -->
+    <footer class="footer text-center"> 2016 © Elite Admin brought to you by themedesigner.in </footer>
+  </div>
 </div>
 <!-- /#wrapper -->
 
@@ -214,6 +292,7 @@
 <script src="<?=$this->baseUrl()?>plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.js"></script>
 
 <script src="<?=$this->baseUrl()?>js/numeral.js"></script>
+<script src="<?=$this->baseUrl()?>plugins/bower_components/nestable/jquery.nestable.js"></script>
 <script type="text/javascript">
 
 var isconfirming = false;
@@ -243,46 +322,65 @@ var isconfirming = false;
 
 
    $(document).ready(function() {
-      // $.toast({
-      //   heading: 'Welcome to Elite admin',
-      //   text: 'Use the predefined ones, or specify a custom position object.',
-      //   position: 'top-right',
-      //   loaderBg:'#ff6849',
-      //   icon: 'info',
-      //   hideAfter: 3500,
 
-      //   stack: 6
-      // })
-      //$('.myDataTable').DataTable({paging:false,pageLength:1000}); //paging causing confusion
-      //delete confirmation
-      $('.fa-close').parent().click(function(event) {
-            return confirm('Klik ok untuk menghapus');
-          });
-      $('.myDataTable').on( 'init.dt', function () {
-          //delete confirmation
-          console.log($(this).find('.fa-close').parent().get());
-            $(this).find('.fa-close').parent().unbind( "click" );
+    //   var updateOutput = function(e) {
+    //     var list   = e.length ? e : $(e.target),
+    //         output = list.data('output');
+    //     if (window.JSON) {
+    //         output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
+    //     } else {
+    //         output.val('JSON browser support required for this demo.');
+    //     }
+    // };
+    
+    // $('#nestable').nestable({group: 1}).on('change', updateOutput);
+    
+    // $('#nestable2').nestable({group: 1}).on('change', updateOutput);
+    
+    // updateOutput($('#nestable').data('output', $('#nestable-output')));
+    // updateOutput($('#nestable2').data('output', $('#nestable2-output')));
 
-            $(this).find('.fa-close').parent().click(function(event) {
+    // $('#nestable-menu').on('click', function(e)  {
+    //     var target = $(e.target),
+    //         action = target.data('action');
+    //     if (action === 'expand-all') {
+    //         $('.dd').nestable('expandAll');
+    //     }
+    //     if (action === 'collapse-all') {
+    //         $('.dd').nestable('collapseAll');
+    //     }
+    // });
 
-              return confirm('Klik ok untuk menghapus');
-            });
+    // $('#nestable-menu').nestable();
+      
+      // $('.fa-close').parent().click(function(event) {
+      //       return confirm('Klik ok untuk menghapus');
+      //     });
+      // $('.myDataTable').on( 'init.dt', function () {
+      //     //delete confirmation
+      //     console.log($(this).find('.fa-close').parent().get());
+      //       $(this).find('.fa-close').parent().unbind( "click" );
 
-      } ).DataTable({
-        "order": []
-      }); //paging causing confusion
-      $('.footable').footable();
-      $(".select2").select2();
-      $('.input-daterange').datepicker({
-        toggleActive: true
-      });
-      $('.mydatepicker').datepicker({
-        autoclose:true,
-        ignoreReadonly: false
-      });
-      $('.clockpicker').clockpicker({
-          donetext: 'Done',
-      });
+      //       $(this).find('.fa-close').parent().click(function(event) {
+
+      //         return confirm('Klik ok untuk menghapus');
+      //       });
+
+      // } ).DataTable({
+      //   "order": []
+      // }); //paging causing confusion
+      // $('.footable').footable();
+      // $(".select2").select2();
+      // $('.input-daterange').datepicker({
+      //   toggleActive: true
+      // });
+      // $('.mydatepicker').datepicker({
+      //   autoclose:true,
+      //   ignoreReadonly: false
+      // });
+      // $('.clockpicker').clockpicker({
+      //     donetext: 'Done',
+      // });
     });
 
 </script>

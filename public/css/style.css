@@ -1490,14 +1490,16 @@ table.dataTable thead .sorting:after {
   font-size: 40px;
 }
 .white-box {
-  background: #ffffff;
-  padding: 25px;
+  background: #E2E4E6;
+  padding: 15px;
+  width: 375px;
   margin-bottom: 15px;
+  border-radius: 5px;
 }
 .white-box .box-title {
   margin: 0px 0px 12px;
   font-weight: 500;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   font-size: 14px;
 }
 .panel {
@@ -2324,13 +2326,18 @@ Models
   cursor: pointer;
 }
 /*Nestable*/
+.dd-list {
+  list-style: none;
+  padding: 10px 10px 10px;
+}
 .myadmin-dd .dd-list .dd-item .dd-handle {
   background: #ffffff;
   border: 1px solid rgba(120, 130, 140, 0.13);
-  padding: 8px 16px;
+  padding: 15px 16px;
   height: auto;
+  width: 325px;
   font-weight: 600;
-  border-radius: 0px;
+  border-radius: 5px;
 }
 .myadmin-dd .dd-list .dd-item .dd-handle:hover {
   color: #03a9f3;
@@ -2338,7 +2345,7 @@ Models
 .myadmin-dd .dd-list .dd-item button {
   height: auto;
   font-size: 17px;
-  margin: 8px auto;
+  margin: 80px auto;
   color: #2b2b2b;
   width: 30px;
 }
