@@ -68,6 +68,9 @@
    .bg-panel {
     background : #e4e7ea;
    }
+   input[type='file'] {
+    display: none;
+  }
 </style>
 
 </head>
@@ -165,6 +168,7 @@
          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
               <div class="panel panel-default">
                   <div class="panel-heading">
+                  <input onclick="change()" type="button" value="Open Curtain" id=myButton1"></input>
                   <label class="control-label">Add Card</label>
                       <div class="panel-action"><a href="#" data-perform="panel-collapse"><i class="ti-minus"></i></a> <a href="#" data-perform="panel-dismiss"><i class="ti-close"></i></a></div>
                       <a class="btn btn-block btn-default m-t-10 collapseble">Add a List ...
@@ -238,6 +242,13 @@
 <script src="<?=$this->baseUrl()?>plugins/bower_components/nestable/jquery.nestable.js"></script>
 
 <noscript>&lt;img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=m/hBm1akKd60bm" style="display:none" height="1" width="1" alt=""&gt;</noscript>
+
+<script type="text/javascript">
+  function change()
+  {
+    document.getElementById("myButton1").value="Close Curtain";
+  }
+</script>
 
 <script type="text/javascript">
 
