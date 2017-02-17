@@ -49,11 +49,12 @@ class cardController extends Controller
         }
 
         $card->id = $postData['id'];
+        $card->list = $postData['idlist'];
         $card->cardname = ($postData['cardname']);
 
         $card->save();
 
-        return $response->withRedirect($this->router->pathFor('tampil-card'));
+        return $response->withRedirect('/board/list/'.$postData['board']);
 
 	}
 

@@ -47,6 +47,8 @@ $app->group('/board', function() {
 	$this->post('/save-list', App\Controller\ListController::class.':save')->setName('save-list');
 	// $this->get('/delete/{id}', App\Controller\BoardController::class.':delete')->setName('delete-board');
 
+	$this->post('/save-card', App\Controller\CardController::class.':save')->setName('save-card');
+
 });
 
 // // $app->group('/list', function() {
