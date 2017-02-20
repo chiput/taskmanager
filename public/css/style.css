@@ -1072,7 +1072,7 @@ pre {
   transition: all .5s;
 }
 .btn-rounded {
-  border-radius: 60px;
+  border-radius: 5px;
 }
 .btn-custom,
 .btn-custom.disabled {
@@ -1093,8 +1093,8 @@ pre {
 }
 .btn-primary,
 .btn-primary.disabled {
-  background: #ab8ce4;
-  border: 1px solid #ab8ce4;
+  background: #39677b;
+  border: 1px solid #39677b;
 }
 .btn-primary:hover,
 .btn-primary.disabled:hover,
@@ -1490,11 +1490,9 @@ table.dataTable thead .sorting:after {
   font-size: 40px;
 }
 .white-box {
-  background: #E2E4E6;
-  padding: 15px;
-  width: 375px;
+  background: #ffffff;
+  padding: 25px;
   margin-bottom: 15px;
-  border-radius: 5px;
 }
 .white-box .box-title {
   margin: 0px 0px 12px;
@@ -2328,19 +2326,19 @@ Models
 /*Nestable*/
 .dd-list {
   list-style: none;
-  padding: 10px 10px 10px;
+  padding: 0px 0px 0px;
 }
 .myadmin-dd .dd-list .dd-item .dd-handle {
   background: #ffffff;
   border: 1px solid rgba(120, 130, 140, 0.13);
-  padding: 15px 16px;
+  padding: 8px 8px 8px 8px;
   height: auto;
-  width: 325px;
-  font-weight: 600;
+  width: 280px;
+  font-weight: 200;
   border-radius: 5px;
 }
 .myadmin-dd .dd-list .dd-item .dd-handle:hover {
-  color: #03a9f3;
+  color: #000000;
 }
 .myadmin-dd .dd-list .dd-item button {
   height: auto;
