@@ -63,17 +63,15 @@
     color: #9d9d9d !important;
    }
    .bg-blue {
-    background: #0085ff !important;
+    background: #39677b !important;
    }
-<<<<<<< HEAD
    .bg-panel {
     background : #e4e7ea;
    }
    input[type='file'] {
     display: none;
-  }
-=======
->>>>>>> upstream/master
+   }
+
 </style>
 
 </head>
@@ -114,8 +112,7 @@
                     </span>
                 </div>
             </li>  
-            <li><a href="#" class="waves-effect"><i class="ti-user fa-fw"></i> <span class="hide-menu">User<span class="fa arrow"></span></span></a>
-        <li><a href="#" class="waves-effect"><i class="icon-list fa-fw"></i> <span class="hide-menu">Personal Task Manager <span class="fa arrow"></span></span></a>
+          <li><a href="/board/" class="waves-effect"><i class="icon-list fa-fw"></i> <span class="hide-menu">Personal Task Manager <span class="fa arrow"></span></span></a>
     </div>
   </div>
 
@@ -127,9 +124,6 @@
       <div class="row bg-title">
         <div class="col-sm-2 col-xs-9">
           <a class="btn btn-block btn-outline btn-rounded btn-info"><span>Task Manager</span></a>
-        </div>
-        <div class="col-sm-2 col-lg-1 col-xs-9">
-          <a class="btn btn-block btn-outline btn-rounded btn-info"><span class="ti-lock"> Private</span></a>
         </div>
         <div class="col-lg-9 col-md-8 col-xs-12">
           <ol class="breadcrumb">
@@ -189,14 +183,12 @@
                 </div>
                 <!-- /.modal-content -->
             </div>
-<<<<<<< HEAD
           </div>
          <!-- content list -->
-         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+    <!--      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
               <div class="panel panel-default">
                   <div class="panel-heading">
-                  <input onclick="change()" type="button" value="Open Curtain" id=myButton1"></input>
-                  <label class="control-label">Add Card</label>
+                    <label class="control-label">Add Card</label>
                       <div class="panel-action"><a href="#" data-perform="panel-collapse"><i class="ti-minus"></i></a> <a href="#" data-perform="panel-dismiss"><i class="ti-close"></i></a></div>
                       <a class="btn btn-block btn-default m-t-10 collapseble">Add a List ...
                       </a>
@@ -206,13 +198,11 @@
                                     </div>
                   </div>
               </div>
-          </div> 
+          </div>  -->
               </div>
       </div>
-=======
             <!-- /.modal-dialog -->
         </div>
->>>>>>> upstream/master
 
       <div class="right-sidebar">
         <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="slimscrollright" style="overflow: hidden; width: auto; height: 100%;">

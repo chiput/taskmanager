@@ -1108,8 +1108,8 @@ pre {
 }
 .btn-success,
 .btn-success.disabled {
-  background: #00c292;
-  border: 1px solid #00c292;
+  background: #39677b;
+  border: 1px solid #39677b;
 }
 .btn-success:hover,
 .btn-success.disabled:hover,
@@ -1117,9 +1117,9 @@ pre {
 .btn-success.disabled:focus,
 .btn-success.focus,
 .btn-success.disabled.focus {
-  background: #00c292;
+  background: #2f4f4f;
   opacity: 0.8;
-  border: 1px solid #00c292;
+  border: 1px solid #2f4f4f;
 }
 .btn-info,
 .btn-info.disabled {
@@ -1629,9 +1629,9 @@ table.dataTable thead .sorting:after {
 }
 .panel-blue .panel-heading,
 .panel-info .panel-heading {
-  border-color: #03a9f3;
+  border-color: #39677b;
   color: white;
-  background-color: #03a9f3;
+  background-color: #39677b;
 }
 .panel-blue .panel-heading a,
 .panel-info .panel-heading a {

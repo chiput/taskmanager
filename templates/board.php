@@ -38,17 +38,47 @@
 <link href="<?=$this->baseUrl()?>css/style.css" rel="stylesheet">
 <!-- color CSS -->
 <link href="<?=$this->baseUrl()?>css/colors/blue.css" id="theme"  rel="stylesheet">
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-<!-- <script src="http://www.w3schools.com/lib/w3data.js"></script> -->
-
-
 <!-- jQuery -->
 <script src="<?=$this->baseUrl()?>plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- tambahan css -->
+<style type="text/css">
+     ul.board {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+     }
+     ul.board li {
+        margin: 5px;
+        border-radius: 5px;
+        height: 120px;
+        font-size: 18px;
+        background: #fcfcfc;
+        padding: 10px;
+     }
+     ul.board li span {
+        color: #fff;
+     }
+     span.create-board {
+      color: #9d9d9d !important;
+     }
+     .bg-blue {
+      background: #39677b !important;
+     }
+     .board-list {
+      position: relative;
+     }
+     /*.navbar-toggle1 {
+      position: relative;
+      padding: 9px 10px;
+      margin-top: 8px;
+      margin-right: 15px;
+      margin-bottom: 8px;
+      background-color: transparent;
+      background-image: none;
+      border:1px solid transparent;
+      border-radius: 4px;
+     }*/
+</style>
 
 </head>
 <body>
@@ -65,12 +95,6 @@
       <div class="top-left-part"><a class="logo"  href="#"><b><img src="<?=$this->baseUrl()?>plugins/images/harmonipermana-logo.png" width="150" alt="home" /></b><span class="hidden-xs"></span></a></div>
       <ul class="nav navbar-top-links navbar-left hidden-xs">
         <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
-        <!--<li>
-          <form role="search" class="app-search hidden-xs">
-            <input type="text" placeholder="Search..." class="form-control">
-            <a href=""><i class="fa fa-search"></i></a>
-          </form>
-        </li>-->
       </ul>
       <ul class="nav navbar-top-links navbar-right pull-right">
         <li class="dropdown">
@@ -78,81 +102,37 @@
                 <img src="<?=$this->baseUrl()?>plugins/images/users/avatar.png" alt="user-img" width="36" class="img-circle">
                 <b class="hidden-xs"> Admin</b>
             </a>
-          <ul class="dropdown-menu dropdown-user animated">
-            <!--<li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-            <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-            <li role="separator" class="divider"></li>-->
-            <li><a href="#>"><i class="fa fa-power-off"></i> Logout</a></li>
+            <ul class="dropdown-menu dropdown-user animated">
+              <li><a href="#>"><i class="fa fa-power-off"></i> Logout</a></li>
           </ul>
-          <!-- /.dropdown-user -->
         </li>
-        <!-- /.dropdown -->
       </ul>
     </div>
-    <!-- /.navbar-header -->
-    <!-- /.navbar-top-links -->
-    <!-- /.navbar-static-side -->
   </nav>
+
   <!-- Left navbar-header -->
   <div class="navbar-default sidebar hidden-print" role="navigation">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
         <ul class="nav" id="side-menu">
-            <li class="sidebar-search hidden-sm hidden-md hidden-lg">
-                <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
-                    </span>
-                </div>
-            </li>
             
-            <li><a href="#" class="waves-effect"><i class="ti-user fa-fw"></i> <span class="hide-menu">User<span class="fa arrow"></span></span></a>
+        <li><a href="/board/" class="waves-effect"><i class="icon-list fa-fw"></i> <span class="hide-menu">Personal Task Manager <span class="fa arrow"></span></span></a>
               <ul class="nav nav-second-level">
                 <!-- <li><a href="<?=$this->pathFor('tampil-user')?>" class="waves-effect">Daftar User</a></li> -->
         </ul>
-        <li><a href="#" class="waves-effect"><i class="icon-list fa-fw"></i> <span class="hide-menu">Personal Task Manager <span class="fa arrow"></span></span></a>
-              <ul class="nav nav-second-level">
-                <!-- <li><a href="<?=$this->pathFor('tampil-user')?>" class="waves-effect">Daftar User</a></li> -->
+        </li>
         </ul>
     </div>
   </div>
-
   <!-- Left navbar-header end -->
+
   <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
            <div class="col-md-12"></div>
-             <style type="text/css">
-               ul.board {
-                  list-style: none;
-                  padding: 0;
-                  margin: 0;
-               }
-               ul.board li {
-                  margin: 5px;
-                  border-radius: 5px;
-                  height: 120px;
-                  font-size: 18px;
-                  background: #fcfcfc;
-                  padding: 10px;
-               }
-               ul.board li span {
-                  color: #fff;
-               }
-               span.create-board {
-                color: #9d9d9d !important;
-               }
-               .bg-blue {
-                background: #0085ff !important;
-               }
-             </style>
-                        <div class="col-md-12"></div>
                            <div class="row active">
-                              <div class="col-sm-12">
-                                  <ul class="board">
+                              <div class="col-md-12">
+                              <center>
+                                  <ul class="board board-list">
                                     <?php foreach($boards as $board): ?>
                                     <a href="list/<?= $board->id; ?>">
                                       <li class="board-list bg-blue text-white white-box bg-blue m-t-12 collapseble col-md-3">
@@ -166,7 +146,7 @@
                                       </li>
                                     </a>
                                   </ul>
-                                  <!-- <div class="white-box text-center bg-purple"> -->
+                                  </center>
                                     <div class="m-t-15 collapseblebox dn" style="display: none;">
                                       <div class="row active">
                                         <div class="col-sm-4" style="display: block;">
@@ -182,7 +162,7 @@
                                                               <div class="col-md-12">
                                                                   <div class="form-group">
                                                                     <label class="control-label">Tittle</label>
-                                                                    <input type="text" id="firstName" class="form-control" placeholder="John doe" name="boardname">
+                                                                    <input type="text" id="firstName" class="form-control" placeholder="add your board name . . ." name="boardname">
                                                                   </div>
                                                               <div class="form-group">
                                                                 <label class="control-label">Team</label>
@@ -195,7 +175,6 @@
                                                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Create</button>
                                                     </div>
                                                   </form>
-<!-- >>>>>>> upstream/master -->
                                               </div>
                                           </div>
                                         </div>
@@ -204,15 +183,13 @@
                                   </div>
                               </div>
                             </div>
-                        </div>
+
                            
 
-        <footer class="footer text-center"> <strong>Hospitality Platform</strong> &copy; <?=date('Y')?></footer>
+          <footer class="footer text-center"> <strong>Hospitality Platform</strong> &copy; <?=date('Y')?></footer>
         </div>
-      <!-- /#page-wrapper -->
     </div>
 </div>
-<!-- /#wrapper -->
 
 
 <!-- Bootstrap Core JavaScript -->
