@@ -65,4 +65,57 @@ class UserController extends Controller
 		$this->session->setFlash('success', 'User Terhapus');
 		return $response->withRedirect($this->router->pathFor('tampil-user'));
 	}
+
+	public function login(Request $request, Response $response, Array $args)
+	{
+		$data = [];
+		
+		if(null != $this->session->getFlash('postData')) {
+			$data['users'] = (object)$this->session->getFlash('postData');
+		}
+
+		$data['title'] = "Login User";
+
+		return $this->renderer->render($response, 'login', $data);
+
+	}
+
+	public function checkuser(Request $request, Response $response, Array $args)
+	{
+		$postData = $request->getParsedBody();
+		$data['title'] = "Login System";
+		$username = $postData['username'];
+        $password = md5($postData['password']);
+		$user = User::where([['username', '=', $username], ['password', '=', $password]])->get();
+		$num = $user->count();
+
+		$encode = json_encode($user);
+		$users = json_decode($encode, true);
+
+		if($num>0){		
+			$_SESSION['uname'] = $users['0']['username'];
+			$_SESSION['id'] = $users['0']['id'];
+			$_SESSION['status'] = 'userLogin';
+
+			if($users['0']['role']==1){
+				$_SESSION['role'] = 'Administrator';
+			} else {
+				$_SESSION['role'] = 'User';
+			}	
+
+			return $response->withRedirect($this->router->pathFor('tampil-user'));
+
+		} else {
+
+			return $response->withRedirect($this->router->pathFor('login'));
+
+		}
+
+	}
+
+	public function logout(Request $request, Response $response, Array $args)
+	{
+		session_destroy();
+		return $response->withRedirect($this->router->pathFor('login'));
+	}
 }

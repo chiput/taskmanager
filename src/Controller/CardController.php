@@ -30,19 +30,21 @@ class CardController extends Controller
 	{
 		$postData = $request->getParsedBody();
 		 // insert
-        if ($postData['id'] == '') {
+        if ($postData['pk'] == '') {
         	$this->session->setFlash('success', 'Card Berhasil Dibuat');
             $card = new card();
+	        $card->id = $postData['id'];
+	        $card->list = $postData['idlist'];
+	        $card->cardname = ($postData['cardname']);
+	        $card->save();
+	        return $response->withRedirect('/board/list/'.$postData['board']);
         } else {
         // update
         	$this->session->setFlash('success', 'Card Berhasil Diperbaharui');
-            $card = Card::find($postData['id']);
+            $card = Card::find($postData['pk']);
+            $card->description = $postData['value'];
+            $card->save();
         }
-        $card->id = $postData['id'];
-        $card->list = $postData['idlist'];
-        $card->cardname = ($postData['cardname']);
-        $card->save();
-        return $response->withRedirect('/board/list/'.$postData['board']);
 	}
 	
 	public function delete(Request $request, Response $response, Array $args)

@@ -38,15 +38,38 @@
 <link href="<?=$this->baseUrl()?>css/style.css" rel="stylesheet">
 <!-- color CSS -->
 <link href="<?=$this->baseUrl()?>css/colors/blue.css" id="theme"  rel="stylesheet">
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-<!-- <script src="http://www.w3schools.com/lib/w3data.js"></script> -->
-
-
+<style type="text/css">
+       ul.board {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+       }
+       ul.board li {
+          margin: 5px;
+          margin-top: 20px;
+          margin-top: 20px;
+          border-radius: 5px;
+          height: 120px;
+          max-width: 300px;
+          max-height: 300px;
+          position: relative;
+          font-size: 18px;
+          background: #fcfcfc;
+          padding: 10px;
+       }
+       ul.board li span {
+          color: #fff;
+       }
+       span.create-board {
+        color: #9d9d9d !important;
+       }
+       .background {
+        background: #39677b !important;
+       }
+       .background:hover {
+        background: #008080 !important;
+       }
+</style>
 <!-- jQuery -->
 <script src="<?=$this->baseUrl()?>plugins/bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -65,12 +88,6 @@
       <div class="top-left-part"><a class="logo"  href="#"><b><img src="<?=$this->baseUrl()?>plugins/images/harmonipermana-logo.png" width="150" alt="home" /></b><span class="hidden-xs"></span></a></div>
       <ul class="nav navbar-top-links navbar-left hidden-xs">
         <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
-        <!--<li>
-          <form role="search" class="app-search hidden-xs">
-            <input type="text" placeholder="Search..." class="form-control">
-            <a href=""><i class="fa fa-search"></i></a>
-          </form>
-        </li>-->
       </ul>
       <ul class="nav navbar-top-links navbar-right pull-right">
         <li class="dropdown">
@@ -78,134 +95,148 @@
                 <img src="<?=$this->baseUrl()?>plugins/images/users/avatar.png" alt="user-img" width="36" class="img-circle">
                 <b class="hidden-xs"> Admin</b>
             </a>
-          <ul class="dropdown-menu dropdown-user animated">
-            <!--<li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-            <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-            <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-            <li role="separator" class="divider"></li>-->
-            <li><a href="#>"><i class="fa fa-power-off"></i> Logout</a></li>
+            <ul class="dropdown-menu dropdown-user animated">
+              <li><a href="#>"><i class="fa fa-power-off"></i> Logout</a></li>
           </ul>
-          <!-- /.dropdown-user -->
         </li>
-        <!-- /.dropdown -->
       </ul>
     </div>
-    <!-- /.navbar-header -->
-    <!-- /.navbar-top-links -->
-    <!-- /.navbar-static-side -->
   </nav>
+
   <!-- Left navbar-header -->
-  <div class="navbar-default sidebar hidden-print" role="navigation">
+<div class="navbar-default sidebar hidden-print" role="navigation">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
         <ul class="nav" id="side-menu">
-            <!--<li class="sidebar-search hidden-sm hidden-md hidden-lg">
-                <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
-                    </span>
-                </div>
-            </li>-->
             
-            <li><a href="#" class="waves-effect"><i class="ti-user fa-fw"></i> <span class="hide-menu">User <span class="fa arrow"></span></span></a>
-              <ul class="nav nav-second-level">
-                <li><a href="<?=$this->pathFor('tampil-user')?>" class="waves-effect">Daftar User</a></li>
+        <li><a href="<?=$this->pathFor('tampil-board')?>" class="waves-effect"><i class="icon-list fa-fw"></i> <span class="hide-menu">Job Desc<span class="fa arrow"></span></span></a>
+                </li>
         </ul>
     </div>
   </div>
-   <style type="text/css">
-      .white-box {
-      background: #ffffff;
-      margin: 0;
-      padding: 25px;
-      width: auto;
-      margin-bottom: 15px;
-      border-radius: 0;
-      }
-  </style>
   <!-- Left navbar-header end -->
-  <!-- Page Content -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            
-            <div class="row">
-    <div class="col-sm-12">
-      <div class="white-box">
-        <?php if ($this->getSessionFlash('success')): ?>
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <?php echo $this->getSessionFlash('success'); ?>
-        </div>
-        <?php endif; ?>
 
-         <?php if ($this->getSessionFlash('error_messages')): ?>
-        <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-             <ul>
-              <?php
-                foreach($this->getSessionFlash('error_messages') as $key => $error) {
-                ?>
-                <li><?php echo $error; ?></li>
-                <?php
-                }
-              ?>
-              </ul>
-            
-        </div>
-        <?php endif; ?>    
-        
-        <h3 class="box-title m-b-0">User</h3>
-        <form class="form-horizontal" action="<?php echo $this->pathFor('save-user'); ?>" method="post">
-        <input type="hidden" class="form-control" value="<?php echo @$user->id ?>" name="id">
-        <div class="row">
-            <div class="col-md-12">
-                
-                <div class="form-group">
-                    <label class="col-md-12"> <span class="help"> Username</span></label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control" value="<?php echo @$user->username ?>" name="username">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-md-12"> <span class="help"> Password</span></label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control" value="<?php echo @$user->password ?>" name="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-12"> <span class="help"> Role</span></label>
-                    <div class="col-md-12">
-                        <input type="text" class="form-control" value="<?php echo @$user->role ?>" name="role">
-                    </div>
-                </div>           
-                <div class="form-group m-b-0">
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-success waves-effect waves-light m-t-10">Simpan</button>
-                        <a class="btn btn-danger waves-effect waves-light m-t-10" href="javascript:window.history.back();">Batal</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </form>
+<div id="page-wrapper">
+    <div class="container-fluid">
+      <!-- .row -->
+      <div class="row">
+       <ul class="board">
+            <div class="col-md-3">
+              <?php foreach($boards as $board): ?>
+              <a href="list/<?= $board->id; ?>">
+                <li class="board-list background background text-white white-box ">
+                  <span><?= $board->boardname; ?></span>
+                </li>
+              </a>
+              </div>
+              <div class="col-md-3">
+            <?php endforeach; ?>
+              <a href="#" data-perform="panel-collapse">
+                <li class="board-list white-box btn collapseble col-md-11">
+                  <span class="create-board board-default">Create New Board</span>
+                </li>
+              </a>
+              </div>
+            </ul>
       </div>
-    </div>
-</div>
 
-
-
-           
-
-        <footer class="footer text-center"> <strong>Hospitality Platform</strong> &copy; <?=date('Y')?></footer>
+<!-- tampilan form add board -->
+<div class="row">
+  <div class="col-md-10">
+      <div class="m-t-15 collapseblebox dn" style="display: none;">
+          <div class="row active">
+            <div class="col-sm-4" style="display: block;">
+              <div class="panel panel-info">
+                <div class="panel-heading"> Create Board 
+                  <div class="panel-action"><a href="#" data-perform="panel-collapse"><i class="ti-minus"></i></a></div>
+                </div>
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                  <div class="panel-body">
+                      <form action="<?= $this->pathFor('save-board'); ?>" method="POST">
+                          <div class="form-body">
+                              <div class="row">
+                                  <div class="form-group">
+                                    <label class="control-label">Tittle</label>
+                                    <input type="text" id="firstName" class="form-control" placeholder="add your board name . . ." name="boardname">
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="control-label">Team</label>
+                                      <p>Teams make sharing and working within a group even easier. It doesn’t look like you are a member of any teams.</p>
+                                  </div>
+                              </div>
+                        </div>
+                          <div class="form-actions">
+                              <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Create</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+            </div>
+          </div>
         </div>
-      <!-- /#page-wrapper -->
+      </div>
+  </div>
+</div>
+<!-- akhir tampilan form add board -->
+
+                    
+<footer class="footer text-center"> <strong>Hospitality Platform</strong> &copy; <?=date('Y')?></footer>
     </div>
 </div>
-<!-- /#wrapper -->
+      <!-- /.row -->
+      
+      <!-- .right-sidebar -->
+      <div class="right-sidebar">
+        <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="slimscrollright" style="overflow: hidden; width: auto; height: 100%;">
+          <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+          <div class="r-panel-body">
+            <ul>
+              <li><b>Layout Options</b></li>
+              
+              <li>
+                <div class="checkbox checkbox-info">
+                  <input id="checkbox1" type="checkbox" class="fxhdr">
+                  <label for="checkbox1"> Fix Header </label>
+                </div>
+              </li>
+            </ul>
+            <ul id="themecolors" class="m-t-20">
+              <li><b>With Light sidebar</b></li>
+              <li><a href="javascript:void(0)" theme="default" class="default-theme">1</a></li>
+              <li><a href="javascript:void(0)" theme="green" class="green-theme">2</a></li>
+              <li><a href="javascript:void(0)" theme="gray" class="yellow-theme">3</a></li>
+              <li><a href="javascript:void(0)" theme="blue" class="blue-theme">4</a></li>
+              <li><a href="javascript:void(0)" theme="purple" class="purple-theme">5</a></li>
+              <li><a href="javascript:void(0)" theme="megna" class="megna-theme working">6</a></li>
+              <li><b>With Dark sidebar</b></li>
+              <br>
+              <li><a href="javascript:void(0)" theme="default-dark" class="default-dark-theme">7</a></li>
+              <li><a href="javascript:void(0)" theme="green-dark" class="green-dark-theme">8</a></li>
+              <li><a href="javascript:void(0)" theme="gray-dark" class="yellow-dark-theme">9</a></li>
 
+              <li><a href="javascript:void(0)" theme="blue-dark" class="blue-dark-theme">10</a></li>
+              <li><a href="javascript:void(0)" theme="purple-dark" class="purple-dark-theme">11</a></li>
+              <li><a href="javascript:void(0)" theme="megna-dark" class="megna-dark-theme">12</a></li>
+            </ul>
+            <ul class="m-t-20 chatonline">
+              <li><b>Chat option</b></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/ritesh.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a></li>
+              <li><a href="javascript:void(0)"><img src="../plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a></li>
+            </ul>
+          </div>
+        </div><div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
+      </div>
+      <!-- /.right-sidebar -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+      <!-- /#page-wrapper -->
+<!-- /#wrapper -->
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?=$this->baseUrl()?>bootstrap/dist/js/bootstrap.min.js"></script>
@@ -247,10 +278,8 @@
 <script src="<?=$this->baseUrl()?>plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
 <script src="<?=$this->baseUrl()?>plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="<?=$this->baseUrl()?>plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.js"></script>
-
 <script src="<?=$this->baseUrl()?>js/numeral.js"></script>
 <script type="text/javascript">
-
 var isconfirming = false;
   // load a language
   //numeral setting
@@ -272,11 +301,8 @@ var isconfirming = false;
           symbol: 'Rp'
       }
   });
-
   // switch between languages
   numeral.language('id');
-
-
    $(document).ready(function() {
       // $.toast({
       //   heading: 'Welcome to Elite admin',
@@ -285,7 +311,6 @@ var isconfirming = false;
       //   loaderBg:'#ff6849',
       //   icon: 'info',
       //   hideAfter: 3500,
-
       //   stack: 6
       // })
       //$('.myDataTable').DataTable({paging:false,pageLength:1000}); //paging causing confusion
@@ -297,12 +322,9 @@ var isconfirming = false;
           //delete confirmation
           console.log($(this).find('.fa-close').parent().get());
             $(this).find('.fa-close').parent().unbind( "click" );
-
             $(this).find('.fa-close').parent().click(function(event) {
-
               return confirm('Klik ok untuk menghapus');
             });
-
       } ).DataTable({
         "order": []
       }); //paging causing confusion
@@ -319,14 +341,12 @@ var isconfirming = false;
           donetext: 'Done',
       });
     });
-
 </script>
 <!--Style Switcher -->
 <!-- <script src="<?=$this->baseUrl()?>plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script> -->
 <!-- Footable -->
 <script src="<?=$this->baseUrl()?>plugins/bower_components/footable/js/footable.all.min.js"></script>
 <script src="<?=$this->baseUrl()?>plugins/bower_components/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
-
 <!-- VUEJS -->
 <script src="<?=$this->baseUrl()?>js/vue.min.js"></script>
 <script src="<?=$this->baseUrl()?>js/vue-resource.min.js"></script>
@@ -338,6 +358,5 @@ var isconfirming = false;
 <script src="<?=$this->baseUrl()?>js/app/vue.roomrates.js"></script>
 <script src="<?=$this->baseUrl()?>js/app/reservation.js"></script>
 <script src="<?=$this->baseUrl()?>js/app/logistic-purchase-request.js"></script>
-
 </body>
 </html>

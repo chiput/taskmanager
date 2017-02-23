@@ -38,19 +38,20 @@ class ListController extends Controller
 	public function save(Request $request, Response $response, Array $args)
 	{
 		$postData = $request->getParsedBody();
-		var_dump($postData);
+
+
 		 // insert
-        if ($postData['id'] == '') {
+        if ($postData['pk'] == '') {
         	$this->session->setFlash('success', 'List Berhasil Dibuat');
             $list = new Lists();
+	        $list->board = $postData['idboard'];
+	        $list->listname = ($postData['listname']);
         } else {
         // update
         	$this->session->setFlash('success', 'List Berhasil Diperbaharui');
-            $list = lists::find($postData['id']);
+            $list = lists::find($postData['pk']);
+	        $list->listname = ($postData['value']);
         }
-        $list->id = $postData['id'];
-        $list->board = $postData['idboard'];
-        $list->listname = ($postData['listname']);
         $list->save();
 
         return $response->withRedirect('/board/list/'.$list->board);

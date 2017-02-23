@@ -13,7 +13,10 @@ class CardMigration
 				{
 					$table->increments('id');
 					$table->integer('list');
-					$table->string('cardname', 50);
+					$table->string('cardname', 100);
+					$table->text('description');
+					$table->text('attachment');
+					$table->date('duedate');
 					$table->timestamps();
 					$table->softDeletes();
 				});
