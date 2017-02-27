@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="#">
 <meta name="author" content="#">
-<link rel="icon" type="image/png" sizes="16x16" href="<?=$this->baseUrl()?>plugins/images/hp-icon.png"">
+<link rel="icon" type="image/png" sizes="16x16" href="<?=$this->baseUrl()?>img/hp-favicon.png">
 <title><?=$title?></title>
 <!-- Bootstrap Core CSS -->
 <link href="<?=$this->baseUrl()?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,39 @@
 <link href="<?=$this->baseUrl()?>css/style.css" rel="stylesheet">
 <!-- color CSS -->
 <link href="<?=$this->baseUrl()?>css/colors/blue.css" id="theme"  rel="stylesheet">
-
+<style type="text/css">
+       ul.board {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+       }
+       ul.board li {
+          margin: 5px;
+          margin-top: 20px;
+          margin-top: 20px;
+          border-radius: 5px;
+          height: 120px;
+          font-size: 18px;
+          background: #fcfcfc;
+           -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+        box-shadow: 0 3px 9px rgba(0,0,0,.5);
+          padding: 10px;
+       }
+       ul.board li span {
+          color: #fff;
+       }
+       span.create-board {
+        color: #9d9d9d !important;
+       }
+       .background {
+        background: #1e90ff !important;
+        -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+        box-shadow: 0 3px 9px rgba(0,0,0,.5);
+       }
+       .background:hover {
+        background: #00bfff !important;
+       }
+</style>
 <!-- jQuery -->
 <script src="<?=$this->baseUrl()?>plugins/bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -52,11 +84,11 @@
   <!-- HEADER -->
 
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-static-top m-b-0">
+  <nav class="navbar navbar-default navbar-static-top m-b-0 hidden-print">
     <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-      <div class="top-left-part"><a class="logo" href="#"><b><img src="<?=$this->baseUrl()?>plugins/images/harmonipermana-logo.png" width="130" alt="home"></b><span class="hidden-xs" style="display: inline;"></span></a></div>
-      <ul class="nav navbar-top-links navbar-left hidden-xs active">
-        <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="ti-menu"></i></a></li>
+     <div class="top-left-part"><a class="logo" href="#"><b><img src="<?=$this->baseUrl()?>plugins/images/harmonipermana-logo.png" width="130" alt="home"></b><span class="hidden-xs" style="display: inline;"></span></a></div>
+      <ul class="nav navbar-top-links navbar-left hidden-xs">
+        <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
       </ul>
       <ul class="nav navbar-top-links navbar-right pull-right">
         
@@ -73,76 +105,89 @@
         </li>
       </ul>
     </div>
-    <!-- /.navbar-header -->
-    <!-- /.navbar-top-links -->
-    <!-- /.navbar-static-side -->
   </nav>
+
   <!-- Left navbar-header -->
   <div class="navbar-default sidebar hidden-print" role="navigation">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
         <ul class="nav" id="side-menu">
-            <li class="sidebar-search hidden-sm hidden-md hidden-lg">
-                <div class="input-group custom-search-form">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"> <i class="fa fa-search"></i> </button>
-                    </span>
-                </div>
-            </li>
             
-            <li><a href="#" class="waves-effect"><i class="ti-user fa-fw"></i> <span class="hide-menu">User<span class="fa arrow"></span></span></a>
-              <ul class="nav nav-second-level">
-                <!-- <li><a href="<?=$this->pathFor('tampil-user')?>" class="waves-effect">Daftar User</a></li> -->
-        </ul>
-        <li><a href="<?=$this->pathFor('tampil-board')?>" class="waves-effect"><i class="icon-list fa-fw"></i> <span class="hide-menu">Job Desc <span class="fa arrow"></span></span></a>
-              <ul class="nav nav-second-level">
-                <!-- <li><a href="<?=$this->pathFor('tampil-user')?>" class="waves-effect">Daftar User</a></li> -->
-        </ul>
+        <li><a href="#" class="waves-effect"><i class="icon-list fa-fw"></i> <span class="hide-menu">Job Desc <span class="fa arrow"></span></span></a>
+</li>
+</ul>
     </div>
   </div>
-  <style type="text/css">
-    .white-box {
-    background: #ffffff;
-    margin: 0;
-    padding: 25px;
-    width: auto;
-    margin-bottom: 15px;
-    border-radius: 0;
-    }
-  </style>
   <!-- Left navbar-header end -->
-  <!-- Page Content -->
-    <div id="page-wrapper" style="min-height: 601px;">
+
+<div id="page-wrapper" style="min-height: 601px;">
     <div class="container-fluid">
+      <!-- .row -->
       <div class="row">
-        <div class="col-sm-12">
-          <div class="white-box">
-            <h3 class="box-title m-b-0">Data Users</h3>
-             <p class="text-muted m-b-20"><a href="<?php echo $this->pathFor('form-user'); ?>" class="btn btn-primary">Tambah</a></p>
-            <table id="myTable" class="table table-striped">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>username</th>
-                  <th>role</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php foreach($users as $user): ?>
-                <tr>
-                  <td class="text-nowrap">
-                      <a href="<?php echo $this->pathFor('update-user', ['id' => $user->id]) ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i></a>
-                      <a href="<?php echo $this->pathFor('delete-user', ['id' => $user->id]) ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger m-r-10"></i> </a>
-                  </td>
-                  <td><?= $user->username; ?></td>
-                  <td><?php if($user->role==0){ echo "User"; } else { echo "Administrator";} ?></td>
-                </tr>
-              <?php endforeach; ?>
-              </tbody>
-            </table>
+       <ul class="board">
+            <div class="col-md-3">
+              <?php foreach($boards as $board): ?>
+              <a href="list/<?= $board->id; ?>">
+                <li class="board-list background background text-white white-box ">
+                  <span><?= $board->boardname; ?></span>
+                </li>
+              </a>
+              </div>
+              <div class="col-md-3">
+            <?php endforeach; ?>
+              <a href="#" data-perform="panel-collapse">
+                <li class="board-list white-box btn collapseble col-md-11">
+                  <span class="create-board board-default">Create New Board</span>
+                </li>
+              </a>
+              </div>
+            </ul>
+      </div>
+
+<!-- tampilan form add board -->
+<div class="row">
+  <div class="col-md-10">
+      <div class="m-t-15 collapseblebox dn" style="display: none;">
+          <div class="row active">
+            <div class="col-sm-4" style="display: block;">
+              <div class="panel panel-info">
+                <div class="panel-heading"> Create Board 
+                  <div class="panel-action"><a href="#" data-perform="panel-collapse"><i class="ti-minus"></i></a></div>
+                </div>
+                <div class="panel-wrapper collapse in" aria-expanded="true">
+                  <div class="panel-body">
+                      <form action="<?= $this->pathFor('save-board'); ?>" method="POST">
+                          <div class="form-body">
+                              <div class="row">
+                                  <div class="form-group">
+                                    <label class="control-label">Tittle</label>
+                                    <input type="text" id="firstName" class="form-control" placeholder="add your board name . . ." name="boardname">
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="control-label">Team</label>
+                                      <p>Teams make sharing and working within a group even easier. It doesn’t look like you are a member of any teams.</p>
+                                  </div>
+                              </div>
+                        </div>
+                          <div class="form-actions">
+                              <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Create</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+  </div>
+</div>
+<!-- akhir tampilan form add board -->
+
+                    
+<footer class="footer text-center"> <strong>Hospitality Platform</strong> &copy; <?=date('Y')?></footer>
+    </div>
+</div>
+      <!-- /.row -->
+      
       <!-- .right-sidebar -->
       <div class="right-sidebar">
         <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="slimscrollright" style="overflow: hidden; width: auto; height: 100%;">
@@ -150,13 +195,13 @@
           <div class="r-panel-body">
             <ul>
               <li><b>Layout Options</b></li>
+              
               <li>
                 <div class="checkbox checkbox-info">
                   <input id="checkbox1" type="checkbox" class="fxhdr">
                   <label for="checkbox1"> Fix Header </label>
                 </div>
               </li>
-              
             </ul>
             <ul id="themecolors" class="m-t-20">
               <li><b>With Light sidebar</b></li>
@@ -193,11 +238,9 @@
       <!-- /.right-sidebar -->
     </div>
     <!-- /.container-fluid -->
-    <footer class="footer text-center"> 2016 © Elite Admin brought to you by themedesigner.in </footer>
   </div>
-</div>
+      <!-- /#page-wrapper -->
 <!-- /#wrapper -->
-
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?=$this->baseUrl()?>bootstrap/dist/js/bootstrap.min.js"></script>
@@ -239,55 +282,75 @@
 <script src="<?=$this->baseUrl()?>plugins/bower_components/timepicker/bootstrap-timepicker.min.js"></script>
 <script src="<?=$this->baseUrl()?>plugins/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <script src="<?=$this->baseUrl()?>plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.js"></script>
-
 <script src="<?=$this->baseUrl()?>js/numeral.js"></script>
-<script src="<?=$this->baseUrl()?>plugins/bower_components/nestable/jquery.nestable.js"></script>
-<script>
-    $(document).ready(function(){
-      $('#myTable').DataTable();
-      $(document).ready(function() {
-        var table = $('#example').DataTable({
-          "columnDefs": [
-          { "visible": false, "targets": 2 }
-          ],
-          "order": [[ 2, 'asc' ]],
-          "displayLength": 25,
-          "drawCallback": function ( settings ) {
-            var api = this.api();
-            var rows = api.rows( {page:'current'} ).nodes();
-            var last=null;
-
-            api.column(2, {page:'current'} ).data().each( function ( group, i ) {
-              if ( last !== group ) {
-                $(rows).eq( i ).before(
-                  '<tr class="group"><td colspan="5">'+group+'</td></tr>'
-                  );
-
-                last = group;
-              }
-            } );
-          }
-        } );
-
-    // Order by the grouping
-    $('#example tbody').on( 'click', 'tr.group', function () {
-      var currentOrder = table.order()[0];
-      if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
-        table.order( [ 2, 'desc' ] ).draw();
+<script type="text/javascript">
+var isconfirming = false;
+  // load a language
+  //numeral setting
+  numeral.language('id', {
+      delimiters: {
+          thousands: '.',
+          decimal: ','
+      },
+      abbreviations: {
+          thousand: 'k',
+          million: 'm',
+          billion: 'b',
+          trillion: 't'
+      },
+      ordinal : function (number) {
+          return number === 1 ? 'er' : 'ème';
+      },
+      currency: {
+          symbol: 'Rp'
       }
-      else {
-        table.order( [ 2, 'asc' ] ).draw();
-      }
-    } );
-  } );
+  });
+  // switch between languages
+  numeral.language('id');
+   $(document).ready(function() {
+      // $.toast({
+      //   heading: 'Welcome to Elite admin',
+      //   text: 'Use the predefined ones, or specify a custom position object.',
+      //   position: 'top-right',
+      //   loaderBg:'#ff6849',
+      //   icon: 'info',
+      //   hideAfter: 3500,
+      //   stack: 6
+      // })
+      //$('.myDataTable').DataTable({paging:false,pageLength:1000}); //paging causing confusion
+      //delete confirmation
+      $('.fa-close').parent().click(function(event) {
+            return confirm('Klik ok untuk menghapus');
+          });
+      $('.myDataTable').on( 'init.dt', function () {
+          //delete confirmation
+          console.log($(this).find('.fa-close').parent().get());
+            $(this).find('.fa-close').parent().unbind( "click" );
+            $(this).find('.fa-close').parent().click(function(event) {
+              return confirm('Klik ok untuk menghapus');
+            });
+      } ).DataTable({
+        "order": []
+      }); //paging causing confusion
+      $('.footable').footable();
+      $(".select2").select2();
+      $('.input-daterange').datepicker({
+        toggleActive: true
+      });
+      $('.mydatepicker').datepicker({
+        autoclose:true,
+        ignoreReadonly: false
+      });
+      $('.clockpicker').clockpicker({
+          donetext: 'Done',
+      });
     });
-  </script>
+</script>
 <!--Style Switcher -->
 <!-- <script src="<?=$this->baseUrl()?>plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script> -->
 <!-- Footable -->
 <script src="<?=$this->baseUrl()?>plugins/bower_components/footable/js/footable.all.min.js"></script>
 <script src="<?=$this->baseUrl()?>plugins/bower_components/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
-
 <!-- VUEJS -->
 <script src="<?=$this->baseUrl()?>js/vue.min.js"></script>
 <script src="<?=$this->baseUrl()?>js/vue-resource.min.js"></script>
@@ -299,6 +362,5 @@
 <script src="<?=$this->baseUrl()?>js/app/vue.roomrates.js"></script>
 <script src="<?=$this->baseUrl()?>js/app/reservation.js"></script>
 <script src="<?=$this->baseUrl()?>js/app/logistic-purchase-request.js"></script>
-
 </body>
 </html>

@@ -51,14 +51,6 @@
       text-align: center;
       color: #39677b;
     }
-    .white-box {
-    background: #ffffff;
-    margin: 0;
-    padding: 25px;
-    width: auto;
-    margin-bottom: 15px;
-    border-radius: 0;
-    }
 </style>
 <!-- Preloader -->
 <div class="preloader">
@@ -71,32 +63,36 @@
 </div>
   <div class="login-box">
     <div class="white-box">
-      <h3 class="title-in m-b-20">Sign In</h3>
-      <!-- 
-      <div class="alert alert-danger alert-dismissable">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-      </div>
-       -->
       <form class="form-horizontal form-material" id="loginform" action="<?= $this->pathFor('check-user'); ?>" method="post">
+        <h3 class="title-in m-b-20">Sign In</h3>
         <div class="form-group ">
           <div class="col-xs-12">
-            <input class="form-control" name="username" type="text" required="" placeholder="Username">
+            <input class="form-control" type="text" required="" placeholder="Name">
+          </div>
+        </div>
+        <div class="form-group ">
+          <div class="col-xs-12">
+            <input class="form-control" type="text" required="" placeholder="Email">
+          </div>
+        </div>
+        <div class="form-group ">
+          <div class="col-xs-12">
+            <input class="form-control" type="password" required="" placeholder="Password">
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <input class="form-control" name="password" type="password" required="" placeholder="Password">
+            <input class="form-control" type="password" required="" placeholder="Confirm Password">
           </div>
         </div>
         <div class="form-group text-center m-t-20">
           <div class="col-xs-12">
-            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Log In</button>
+            <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Register</button>
           </div>
         </div>
         <div class="form-group m-b-0">
           <div class="col-sm-12 text-center">
-            <p>Don't have an account? <a href="register.html" class="title-up m-l-5">Sign Up</a></p>
+            <p>Don't have an account? <a href="#" class="title-up m-l-5">Sign in</a></p>
           </div>
         </div>
       </form>
