@@ -10,14 +10,8 @@
 <title><?=$title?></title>
 <!-- Bootstrap Core CSS -->
 <link href="<?=$this->baseUrl()?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="<?=$this->baseUrl()?>bootstrap/dist/css/bootstrap.css" rel="stylesheet">
 <!-- Page plugins css -->
 <link href="<?=$this->baseUrl()?>plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
-<!-- Date picker plugins css -->
-<link href="<?=$this->baseUrl()?>plugins/bower_components/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
-<!-- Daterange picker plugins css -->
-<link href="<?=$this->baseUrl()?>plugins/bower_components/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-<link href="<?=$this->baseUrl()?>plugins/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 <!-- Data table -->
 <link href="<?=$this->baseUrl()?>plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
 <!-- Date picker plugins css -->
@@ -214,7 +208,6 @@
       <div class="top-left-part"><a class="logo" href="#"><b><img src="<?=$this->baseUrl()?>plugins/images/harmonipermana-logo.png" width="130" alt="home" /></b><span class="hidden-xs"></span></a></div>
       <ul class="nav navbar-top-links navbar-right pull-right">
         
-        <!-- /.dropdown -->
         <li class="dropdown"> 
         <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"><img src="<?=$this->baseUrl()?>plugins/images/users/avatar.png" alt="user-img" width="36" class="img-circle"> 
         <b class="hidden-xs"> Admin</b>
@@ -263,17 +256,35 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="margin: 0;">×</button>
                 <br/>
                 <li><i class="fa fa-clock-o" aria-hidden="true"></i> Recent Boards</li>
-                  <li><a href="#">Harmoni Permata</a></li>
-                  <li><a href="#">Masbrooo</a></li>
+                  <?php foreach ($boardrecent as $board): ?>
+                      <li><a href="/board/list/<?= $board->id; ?>"><?= $board->boardname; ?></a></li>
+                  <?php endforeach; ?>
                 <li><img src="<?=$this->baseUrl()?>plugins/images/trellohp.png">Personal Boards</li>
-                  <li><a href="#">Harmoni Permata</a></li>
-                  <li><a href="#">Masbrooo</a></li>
+                  <?php foreach ($boardlist as $board): ?>
+                      <li><a href="/board/list/<?= $board->id; ?>"><?= $board->boardname; ?></a></li>
+                  <?php endforeach; ?>
                 <li class="divider" style="font-size: 1px;"></li>
-                  <li><a href="#">Create new boards</a></li>
-                  <li><a href="#">Always Keep this menu open</a></li>
-                  <li><a href="#">See closed boards</a></li>
+                  <li><a href="#" data-target="#add-board" data-toggle="modal">Create new boards</a></li>
                 </ul>
-
+                <div id="add-board" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; padding-right: 17px;">
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                              <h4 class="modal-title" id="myModalLabel">Add a Board</h4></div>
+                          <div class="modal-body">
+                              <form action="<?= $this->pathFor('save-board'); ?>" method="POST">
+                                  <div class="form-group">
+                                      <div class="col-md-10 m-b-20">
+                                          <input type="text" name="boardname" class="form-control" placeholder="Add a Board . . . "> 
+                                      </div>
+                                  </div>
+                                  <button type="submit" class="btn btn-info">Save</button>
+                              </form>
+                          </div>
+                      </div>
+                    </div>
+                </div>
                 <div class="right">
                 <div class="btn-group m-r-10">
                 <div class="dropdown">
@@ -358,7 +369,6 @@
                       <?php foreach ($list->details as $card):
                         ?>
                           <div class="dd-handle btn-block btn-default" data-toggle="modal" data-target=".bs-example-modal-lg-<?= $card->id; ?>"><?= $card->cardname;?></div>
-                       
                           <div class="modal fade bs-example-modal-lg-<?= $card->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
                           <!-- modal dialog -->
                             <div class="modal-dialog modal-lg">
@@ -376,6 +386,7 @@
                                           <label id="card-<?= $card->id;?>" data-type="textarea" data-pk="<?= $card->id;?>" data-placeholder="Your comments here..." data-title="Enter comments" class="control-label"><?= $card->description; ?></label>
                                           <!-- akhir tampilan form edit -->
                                         </div>
+                                        <div id="checknya-tampil<?= $card->id; ?>"></div>
                                         <div class="mdl-card__supporting-text">
                                         <form id="comments<?= $card->id;?>">
                                           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded" data-upgraded=",MaterialTextfield">
@@ -387,7 +398,7 @@
                                             <!-- <label class="mdl-textfield__label" for="sample3">Say something...please </label> -->
                                           </div>
 
-                                          <button id="update" class="btn waves-effect btn-infoleft"> Comment</button>
+                                          <button id="update" class="btn btn-block btn-success"> Comment</button>
                                         </form>
                                         <div id="comment-show<?= $card->id;?>" class="comment-center"></div>
                                         <script type="text/javascript">
@@ -408,22 +419,22 @@
                                             $('textarea.status-box.mdl-textfield__input').val('');
                                          });
                                          $('#comments<?= $card->id;?>').on('submit', function(e) {
-                                          e.preventDefault();
-                                          $.ajaxSetup({
-                                              headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+                                            e.preventDefault();
+                                            $.ajaxSetup({
+                                                headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+                                            });
+                                            jQuery.ajax({
+                                                url:'/comment/lihat/<?= $card->id;?>',
+                                                async: false,
+                                                type: 'GET',
+                                                success: function( data ){
+                                                     $('#comment-show<?= $card->id;?>').html(data);
+                                                },
+                                                error: function (xhr, b, c) {
+                                                    console.log("xhr=" + xhr + " b=" + b + " c=" + c);
+                                                }
+                                            });
                                           });
-                                          jQuery.ajax({
-                                              url:'/comment/lihat/<?= $card->id;?>',
-                                              async: false,
-                                              type: 'GET',
-                                              success: function( data ){
-                                                   $('#comment-show<?= $card->id;?>').html(data);
-                                              },
-                                              error: function (xhr, b, c) {
-                                                  console.log("xhr=" + xhr + " b=" + b + " c=" + c);
-                                              }
-                                          });
-                                        });
                                          $.ajaxSetup({
                                               headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
                                           });
@@ -443,65 +454,83 @@
                                       </div> 
                                       <div class="col-xs-3">
                                         <h3>Add</h3>
-                                        
-                                          <button type="button" id="checklist" class="dropdown-toggle btn waves-effect btn-infoleft" data-toggle="dropdown"><i class="fa fa-check-square-o"></i>  Checklist </button>
-                                        
-                                        <div id="formCheck" class="hide animated flipInY" >
-                                        <div class="panel-body">
-                                          <form action="/echo/html/" id="popForm" method="get">
-                                            <div class="form-body">
-                                                  <div class="row">
-                                                      <div class="form-group">
-                                                        <label class="control-label">Title</label>
-                                                        <input type="text" id="listname" class="form-control" placeholder="add your list . . ." name="listname">
-                                                      </div>
-                                                  </div>
-                                                  <div class="form-actions">
-                                                  <button type="button" class="btn waves-effect btn-infoleft text-left" style="width: 70px;">Add</button>
-                                              </div>
-                                            </div>
-                                            <script>
-                                              $(function(){
-                                                  $('#checklist').popover({
-                                                     
-                                                      placement: 'bottom',
-                                                      title: 'Add Checklist',
-                                                      html:true,
-                                                      content:  $('#formCheck').html()
-                                                  })
-                                              })
-                                          </script>
-                                        </form>
-                                        </div>
-                                        </div>
-                                        <!-- button Checklist -->
-                                          <!-- <div class="dropdown open"> -->
-                                          <!-- <button type="button" class="dropdown-toggle btn waves-effect btn-infoleft" data-toggle="dropdown"><i class="fa fa-check-square-o"></i>  Checklist </button> -->
-                                          <!-- <div class="dropdown-menu animated flipInY">
+                                          <div class="dropdown open">
+                                            <button type="button" class="dropdown-toggle btn waves-effect btn-infoleft" data-toggle="dropdown"><i class="fa fa-check-square-o"></i>  Checklist </button>
+
+                                          <div class="dropdown-menu animated flipInY">
                                           <div class="panel-body">
                                           <div class="header">
                                               Add Checklist
                                           </div>
                                           <div class="form m-t-5">
-                                            <form action="" method="POST">
+                                            <form id="checknya<?= $card->id;?>" action="<?= $this->pathFor('save-checklist');?>" method="POST">
                                               <div class="form-body">
                                                   <div class="row">
                                                       <div class="form-group">
                                                         <label class="control-label">Title</label>
-                                                        <input type="text" id="firstName" class="form-control" placeholder="add your list . . ." name="listname">
+                                                        <input type="text" name="cardid" value="<?= $card->id; ?>" class="hidden">
+                                                        <input type="text" id="checklistname" class="form-control" placeholder="add your checklist . . ." name="checklistname">
                                                       </div>
                                                   </div>
-                                            </div>
-                                              <div class="form-actions">
-                                                  <button type="button" class="btn waves-effect btn-infoleft text-left" style="text-align: center; width: 100px; float: left;">Add</button>
                                               </div>
-                                          </form>
+                                              <div class="form-actions">
+                                                  <button type="submit" class="btn waves-effect btn-infoleft text-left" style="text-align: center; width: 100px; float: left;">Add</button>
+                                              </div>
+                                            </form>
+                                            <script type="text/javascript">
+                                                $('form#checknya<?= $card->id;?>').submit(function( event ) {
+                                                event.preventDefault();
+                                                $.ajax({
+                                                    url: '<?= $this->pathFor('save-checklist');?>',
+                                                    type: 'post',
+                                                    data: $('form#checknya<?= $card->id;?>').serialize(), // Remember that you need to have your csrf token included
+                                                    dataType: 'json',
+                                                    success: function( _response ){
+                                                        // Handle your response..
+                                                    },
+                                                    error: function( _response ){
+                                                        // Handle error
+                                                    }
+                                                });
+                                                $('input#checklistname').val('');
+                                             });
+                                             $('#checknya<?= $card->id;?>').on('submit', function(e) {
+                                                e.preventDefault();
+                                                $.ajaxSetup({
+                                                    headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+                                                });
+                                                jQuery.ajax({
+                                                    url:'/board/checklist/lihat/<?= $card->id;?>',
+                                                    async: false,
+                                                    type: 'GET',
+                                                    success: function( data ){
+                                                         $('#checknya-tampil<?= $card->id;?>').html(data);
+                                                    },
+                                                    error: function (xhr, b, c) {
+                                                        console.log("xhr=" + xhr + " b=" + b + " c=" + c);
+                                                    }
+                                                });
+                                              });
+                                             $.ajaxSetup({
+                                                  headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+                                              });
+                                              jQuery.ajax({
+                                                  url:'/board/checklist/lihat/<?= $card->id;?>',
+                                                  async: false,
+                                                  type: 'GET',
+                                                  success: function( data ){
+                                                       $('#checknya-tampil<?= $card->id;?>').html(data);
+                                                  },
+                                                  error: function (xhr, b, c) {
+                                                      console.log("xhr=" + xhr + " b=" + b + " c=" + c);
+                                                  }
+                                              });
+                                            </script>
                                           </div>
                                           </div>
-                                          </div> -->
-                                          <!-- </div> -->
-                                        
-                                         <!-- button dueDate -->
+                                          </div>
+                                          </div>
+                                           <!-- button dueDate -->
                                           <div class="dropdown open">
                                             <button type="button" class="dropdown-toggle btn waves-effect btn-infoleft" data-toggle="dropdown"><i class="fa fa-calendar"></i> Due date</button>
                                               <div class="dropdown-menu animated flipInY">
@@ -533,15 +562,15 @@
                                               </div>
                                             </div>
                                           </div>
-                                         
 
-                                      <!-- button Attachment -->
+                                           <!-- button Attachment -->
                                       <button type="button" class="dropdown-toggle btn waves-effect btn-infoleft" data-toggle="dropdown"><i class="fa fa-paperclip"></i> Attachment</button>
                                         <h3>Action</h3>
                                         <!-- button Archive -->
                                           <div class="dropdown open">
                                           <button type="button" class="dropdown-toggle btn waves-effect btn-infoleft" data-toggle="dropdown"><i class="fa fa-trash-o"></i>  Archive</button>
                                           </div>
+
                                       </div>
                                         </div>
                                         </div>
@@ -550,7 +579,7 @@
                             </div>
                             <!-- modal dialog end -->
                           </div>
-                           <!-- tampil dialog comment end -->
+                          <!-- tampil dialog comment end -->
                           <script type="text/javascript">
                           $(function(){
                                $('#card-<?= $card->id;?>').editable({
@@ -636,7 +665,6 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?=$this->baseUrl()?>bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="<?=$this->baseUrl()?>bootstrap/dist/js/popover.js"></script>
 <!-- Menu Plugin JavaScript -->
 <script src="<?=$this->baseUrl()?>plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
 <!--slimscroll JavaScript -->
@@ -727,7 +755,6 @@ var isconfirming = false;
 <script src="<?=$this->baseUrl()?>js/app/vue.roomrates.js"></script>
 <script src="<?=$this->baseUrl()?>js/app/reservation.js"></script>
 <script src="<?=$this->baseUrl()?>js/app/logistic-purchase-request.js"></script>
-
 
 <!-- Clock Plugin JavaScript -->
 <script src="<?=$this->baseUrl()?>plugins/bower_components/clockpicker/dist/jquery-clockpicker.min.js"></script>

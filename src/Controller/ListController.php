@@ -12,6 +12,8 @@ class ListController extends Controller
 	public function __invoke(Request $request, Response $response, Array $args)
 	{
 		$data['lists'] = Lists::where('board', $args['id'])->get();
+		$data['boardlist'] = Board::all();
+		$data['boardrecent'] = Board::orderBy('id', 'DESC')->get();
 		$data['title'] = "List Manager - Task Manager";
 		
 		if(isset($args['id'])){

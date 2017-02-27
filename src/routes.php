@@ -28,6 +28,9 @@ $app->group('/migrate', function() {
 	$commentMigration = new App\Migration\CommentMigration();
 	$commentMigration->createTable();
 
+	$checklistMigration = new App\Migration\ChecklistMigration();
+	$checklistMigration->createTable();
+
 	return $response;
 	});
 });
@@ -64,6 +67,9 @@ $app->group('/board', function() {
 
 	$this->get('/card/{id}', App\Controller\ListController::class)->setName('card-board');
 	$this->post('/save-card', App\Controller\CardController::class.':save')->setName('save-card');
+
+	$this->post('/save-checklist', App\Controller\ChecklistController::class.':save')->setName('save-checklist');
+	$this->get('/checklist/lihat/{id}', App\Controller\ChecklistController::class)->setName('checklist->tampil');
 });
 
 
